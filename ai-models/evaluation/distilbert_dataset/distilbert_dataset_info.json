@@ -1,0 +1,268 @@
+{
+  "title": "DistilBERT Training Dataset — Complete Information",
+  "file": "ai-models/data/raw/real_column_labels.csv",
+  "task": "Column Semantic Labeling (multi-class text classification)",
+  "dataset_overview": {
+    "total_rows": 420,
+    "total_features": 9,
+    "feature_names": [
+      "column_name",
+      "label",
+      "label_id",
+      "char_count",
+      "word_count",
+      "has_underscore",
+      "has_number",
+      "suffix",
+      "prefix"
+    ],
+    "num_classes": 10,
+    "class_names": [
+      "email",
+      "phone",
+      "name",
+      "date",
+      "currency",
+      "id",
+      "address",
+      "percentage",
+      "numeric",
+      "text"
+    ],
+    "label_encoding": {
+      "email": 0,
+      "phone": 1,
+      "name": 2,
+      "date": 3,
+      "currency": 4,
+      "id": 5,
+      "address": 6,
+      "percentage": 7,
+      "numeric": 8,
+      "text": 9
+    },
+    "source_datasets": [
+      "Titanic (Kaggle) — passenger features",
+      "UCI Adult / Census Income — demographic features",
+      "Iris — botanical measurement features",
+      "UCI Wine Quality — chemical measurement features",
+      "KDD Cup 1999 — network traffic features",
+      "Superstore (Kaggle) — sales & order features",
+      "Generic CRM / HR / E-commerce column naming conventions"
+    ],
+    "curation_method": "Manually curated from real public dataset column headers, deduplicated"
+  },
+  "features_description": {
+    "column_name": {
+      "type": "string (text input to DistilBERT)",
+      "description": "The raw column header name as it appears in a real dataset (snake_case)",
+      "examples": [
+        "full_name",
+        "full_address",
+        "primary_email",
+        "display_name",
+        "student_name"
+      ],
+      "avg_chars": 9.8,
+      "min_chars": 2,
+      "max_chars": 19,
+      "avg_words": 1.65,
+      "pct_with_underscore": 64.3,
+      "pct_with_number": 1.0
+    },
+    "label": {
+      "type": "string (human-readable class name)",
+      "description": "Semantic category of the column (target label, string form)",
+      "unique_values": [
+        "email",
+        "phone",
+        "name",
+        "date",
+        "currency",
+        "id",
+        "address",
+        "percentage",
+        "numeric",
+        "text"
+      ]
+    },
+    "label_id": {
+      "type": "integer (0–9, used by DistilBERT classifier head)",
+      "description": "Numeric encoding of the label — fed to the model as target",
+      "encoding": {
+        "email": 0,
+        "phone": 1,
+        "name": 2,
+        "date": 3,
+        "currency": 4,
+        "id": 5,
+        "address": 6,
+        "percentage": 7,
+        "numeric": 8,
+        "text": 9
+      }
+    }
+  },
+  "class_distribution": {
+    "email": {
+      "count": 40,
+      "percentage": 9.52,
+      "source_hint": "E-commerce, CRM, HR, user-registration datasets",
+      "examples": [
+        "company_email",
+        "account_email",
+        "report_email",
+        "secondary_email",
+        "sender_email"
+      ]
+    },
+    "phone": {
+      "count": 42,
+      "percentage": 10.0,
+      "source_hint": "HR, customer, telecom datasets",
+      "examples": [
+        "vendor_phone",
+        "driver_phone",
+        "user_phone",
+        "alt_phone",
+        "emergency_phone"
+      ]
+    },
+    "name": {
+      "count": 40,
+      "percentage": 9.52,
+      "source_hint": "Titanic, Census, HR, customer datasets",
+      "examples": [
+        "alias",
+        "surname",
+        "payee_name",
+        "lastname",
+        "name"
+      ]
+    },
+    "date": {
+      "count": 42,
+      "percentage": 10.0,
+      "source_hint": "Sales, HR, financial, medical datasets",
+      "examples": [
+        "termination_date",
+        "join_date",
+        "delivery_date",
+        "date_modified",
+        "updated_at"
+      ]
+    },
+    "currency": {
+      "count": 42,
+      "percentage": 10.0,
+      "source_hint": "Superstore, financial, payroll, e-commerce datasets",
+      "examples": [
+        "budget",
+        "total_cost",
+        "transaction_amount",
+        "monthly_salary",
+        "gross_amount"
+      ]
+    },
+    "id": {
+      "count": 43,
+      "percentage": 10.24,
+      "source_hint": "Titanic, Census, order-management, CRM datasets",
+      "examples": [
+        "serial_no",
+        "department_id",
+        "student_id",
+        "case_id",
+        "customer_id"
+      ]
+    },
+    "address": {
+      "count": 42,
+      "percentage": 10.0,
+      "source_hint": "Census (UCI Adult), shipping, real-estate datasets",
+      "examples": [
+        "street_name",
+        "location",
+        "po_box",
+        "address_line1",
+        "unit"
+      ]
+    },
+    "percentage": {
+      "count": 40,
+      "percentage": 9.52,
+      "source_hint": "Financial KPIs, business analytics, survey datasets",
+      "examples": [
+        "hit_rate",
+        "discount_rate",
+        "shrinkage_rate",
+        "ratio",
+        "profit_margin"
+      ]
+    },
+    "numeric": {
+      "count": 44,
+      "percentage": 10.48,
+      "source_hint": "Titanic (Age/SibSp), Iris, Census, UCI Adult numeric cols",
+      "examples": [
+        "score",
+        "volatile_acidity",
+        "fixed_acidity",
+        "total_items",
+        "points"
+      ]
+    },
+    "text": {
+      "count": 45,
+      "percentage": 10.71,
+      "source_hint": "Product, review, ticketing, medical, survey datasets",
+      "examples": [
+        "embarked",
+        "marital_status",
+        "cabin",
+        "notes",
+        "justification"
+      ]
+    }
+  },
+  "train_val_test_split": {
+    "strategy": "Stratified split — preserves class proportions in every set",
+    "random_seed": 42,
+    "test_size_pct": 20.0,
+    "val_size_pct": 10.0,
+    "train_rows": 302,
+    "val_rows": 34,
+    "test_rows": 84,
+    "total_rows": 420
+  },
+  "text_statistics": {
+    "avg_char_length": 9.8,
+    "median_char_length": 10.0,
+    "std_char_length": 3.4,
+    "min_char_length": 2,
+    "max_char_length": 19,
+    "avg_word_tokens": 1.65,
+    "max_word_tokens": 3,
+    "pct_single_word": 35.7,
+    "pct_two_words": 63.3,
+    "pct_three_plus": 1.0,
+    "distilbert_max_length_used": 32,
+    "note": "All column names fit within 32 tokens — no truncation occurs during training"
+  },
+  "model_config": {
+    "base_model": "distilbert-base-uncased",
+    "parameters": "66 million",
+    "classifier_head": "Linear(768, 10) — 10 output classes",
+    "tokenizer": "DistilBertTokenizerFast (WordPiece)",
+    "max_token_length": 32,
+    "epochs": 5,
+    "batch_size_train": 16,
+    "batch_size_eval": 32,
+    "learning_rate": "2e-5",
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "early_stopping_patience": 2,
+    "best_metric": "eval_f1_macro",
+    "device": "CPU or CUDA (auto-detected)"
+  }
+}

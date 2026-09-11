@@ -1,0 +1,1038 @@
+{
+  "title": "Qwen 2.5 — Regression & Error Metrics (RMSE, R², MSE, MAE, MAPE, Pearson-r)",
+  "date": "2026-06-09",
+  "metric_definitions": {
+    "RMSE": "Root Mean Squared Error — penalises large deviations more than MAE",
+    "MSE": "Mean Squared Error — average squared deviation (RMSE = √MSE)",
+    "MAE": "Mean Absolute Error — average absolute deviation, robust to outliers",
+    "MAPE": "Mean Absolute Percentage Error — relative error as percentage",
+    "R2": "Coefficient of Determination — proportion of variance explained by the log-linear model (1=perfect, 0=no better than mean)",
+    "Adj_R2": "Adjusted R² — penalises for number of predictors; more honest than R² for small samples",
+    "Pearson_r": "Linear correlation coefficient between ln(params) and metric score (-1 to +1)",
+    "gpt4_reference": "GPT-4 class score used as industry benchmark baseline"
+  },
+  "part_a_all_19_llms_scaling": {
+    "MMLU_scaling_law": {
+      "formula": "MMLU = 9.150*ln(params_B) + 48.182",
+      "R2": 0.7808,
+      "Adjusted_R2": 0.768,
+      "RMSE": 7.7853,
+      "MSE": 60.6108,
+      "MAE": 5.7093,
+      "MAPE_pct": 11.7072,
+      "Pearson_r": 0.8837,
+      "per_model": {
+        "SmolLM2-135M": {
+          "actual": 30.1,
+          "predicted": 29.86,
+          "residual": 0.24
+        },
+        "Qwen2.5-0.5B": {
+          "actual": 45.4,
+          "predicted": 41.84,
+          "residual": 3.56
+        },
+        "TinyLlama-1.1B": {
+          "actual": 25.6,
+          "predicted": 49.05,
+          "residual": -23.45
+        },
+        "Llama-3.2-1B": {
+          "actual": 44.7,
+          "predicted": 48.18,
+          "residual": -3.48
+        },
+        "SmolLM2-1.7B": {
+          "actual": 48.3,
+          "predicted": 53.04,
+          "residual": -4.74
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 60.9,
+          "predicted": 51.89,
+          "residual": 9.01
+        },
+        "Gemma-2-2B": {
+          "actual": 52.2,
+          "predicted": 54.52,
+          "residual": -2.32
+        },
+        "Qwen2.5-3B": {
+          "actual": 65.6,
+          "predicted": 58.23,
+          "residual": 7.37
+        },
+        "Llama-3.2-3B": {
+          "actual": 58.0,
+          "predicted": 58.23,
+          "residual": -0.23
+        },
+        "Phi-3.5-mini": {
+          "actual": 69.0,
+          "predicted": 60.4,
+          "residual": 8.6
+        },
+        "Mistral-7B": {
+          "actual": 63.0,
+          "predicted": 65.99,
+          "residual": -2.99
+        },
+        "Qwen2.5-7B": {
+          "actual": 74.2,
+          "predicted": 65.99,
+          "residual": 8.21
+        },
+        "Llama-3.1-8B": {
+          "actual": 68.4,
+          "predicted": 67.21,
+          "residual": 1.19
+        },
+        "Gemma-2-9B": {
+          "actual": 71.3,
+          "predicted": 68.29,
+          "residual": 3.01
+        },
+        "Phi-3-medium": {
+          "actual": 78.0,
+          "predicted": 72.33,
+          "residual": 5.67
+        },
+        "Qwen2.5-14B": {
+          "actual": 79.7,
+          "predicted": 72.33,
+          "residual": 7.37
+        },
+        "Mixtral-8x7B": {
+          "actual": 71.0,
+          "predicted": 83.35,
+          "residual": -12.35
+        },
+        "Llama-3.1-70B": {
+          "actual": 83.6,
+          "predicted": 87.06,
+          "residual": -3.46
+        },
+        "Qwen2.5-72B": {
+          "actual": 86.1,
+          "predicted": 87.31,
+          "residual": -1.21
+        }
+      }
+    },
+    "HumanEval_scaling_law": {
+      "formula": "HumanEval = 11.774*ln(params_B) + 29.532",
+      "R2": 0.6718,
+      "Adjusted_R2": 0.6525,
+      "RMSE": 13.2161,
+      "MSE": 174.6644,
+      "MAE": 9.8009,
+      "MAPE_pct": 34.9944,
+      "Pearson_r": 0.8197,
+      "per_model": {
+        "SmolLM2-135M": {
+          "actual": 5.4,
+          "predicted": 5.95,
+          "residual": -0.55
+        },
+        "Qwen2.5-0.5B": {
+          "actual": 28.9,
+          "predicted": 21.37,
+          "residual": 7.53
+        },
+        "TinyLlama-1.1B": {
+          "actual": 8.0,
+          "predicted": 30.65,
+          "residual": -22.65
+        },
+        "Llama-3.2-1B": {
+          "actual": 25.0,
+          "predicted": 29.53,
+          "residual": -4.53
+        },
+        "SmolLM2-1.7B": {
+          "actual": 21.0,
+          "predicted": 35.78,
+          "residual": -14.78
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 37.2,
+          "predicted": 34.31,
+          "residual": 2.89
+        },
+        "Gemma-2-2B": {
+          "actual": 36.0,
+          "predicted": 37.69,
+          "residual": -1.69
+        },
+        "Qwen2.5-3B": {
+          "actual": 55.5,
+          "predicted": 42.47,
+          "residual": 13.03
+        },
+        "Llama-3.2-3B": {
+          "actual": 40.0,
+          "predicted": 42.47,
+          "residual": -2.47
+        },
+        "Phi-3.5-mini": {
+          "actual": 59.0,
+          "predicted": 45.25,
+          "residual": 13.75
+        },
+        "Mistral-7B": {
+          "actual": 41.0,
+          "predicted": 52.44,
+          "residual": -11.44
+        },
+        "Qwen2.5-7B": {
+          "actual": 72.0,
+          "predicted": 52.44,
+          "residual": 19.56
+        },
+        "Llama-3.1-8B": {
+          "actual": 62.0,
+          "predicted": 54.01,
+          "residual": 7.99
+        },
+        "Gemma-2-9B": {
+          "actual": 55.0,
+          "predicted": 55.4,
+          "residual": -0.4
+        },
+        "Phi-3-medium": {
+          "actual": 65.0,
+          "predicted": 60.6,
+          "residual": 4.4
+        },
+        "Qwen2.5-14B": {
+          "actual": 78.0,
+          "predicted": 60.6,
+          "residual": 17.4
+        },
+        "Mixtral-8x7B": {
+          "actual": 40.2,
+          "predicted": 74.79,
+          "residual": -34.59
+        },
+        "Llama-3.1-70B": {
+          "actual": 80.0,
+          "predicted": 79.55,
+          "residual": 0.45
+        },
+        "Qwen2.5-72B": {
+          "actual": 86.0,
+          "predicted": 79.88,
+          "residual": 6.12
+        }
+      }
+    }
+  },
+  "part_b_qwen25_per_metric": {
+    "intent_accuracy": {
+      "formula": "score = 7.827*ln(params_B) + 60.832",
+      "R2": 0.9475,
+      "Adjusted_R2": 0.9344,
+      "RMSE": 2.9412,
+      "MSE": 8.6506,
+      "MAE": 2.7393,
+      "MAPE_pct": 3.7441,
+      "Pearson_r": 0.9734,
+      "lower_is_better": false,
+      "gpt4_reference": 90.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 52.3,
+          "predicted_fit": 55.406,
+          "residual": -3.106,
+          "gpt4_ref": 90.0,
+          "gap_from_gpt4": -37.7,
+          "abs_error_from_gpt4": 37.7
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 63.1,
+          "predicted_fit": 64.005,
+          "residual": -0.905,
+          "gpt4_ref": 90.0,
+          "gap_from_gpt4": -26.9,
+          "abs_error_from_gpt4": 26.9
+        },
+        "Qwen2.5-3B": {
+          "actual": 71.4,
+          "predicted_fit": 69.431,
+          "residual": 1.969,
+          "gpt4_ref": 90.0,
+          "gap_from_gpt4": -18.6,
+          "abs_error_from_gpt4": 18.6
+        },
+        "Qwen2.5-7B": {
+          "actual": 79.6,
+          "predicted_fit": 76.063,
+          "residual": 3.537,
+          "gpt4_ref": 90.0,
+          "gap_from_gpt4": -10.4,
+          "abs_error_from_gpt4": 10.4
+        },
+        "Qwen2.5-14B": {
+          "actual": 84.2,
+          "predicted_fit": 81.488,
+          "residual": 2.712,
+          "gpt4_ref": 90.0,
+          "gap_from_gpt4": -5.8,
+          "abs_error_from_gpt4": 5.8
+        },
+        "Qwen2.5-72B": {
+          "actual": 90.1,
+          "predicted_fit": 94.306,
+          "residual": -4.206,
+          "gpt4_ref": 90.0,
+          "gap_from_gpt4": 0.1,
+          "abs_error_from_gpt4": 0.1
+        }
+      }
+    },
+    "code_generation_accuracy": {
+      "formula": "score = 12.633*ln(params_B) + 39.234",
+      "R2": 0.9213,
+      "Adjusted_R2": 0.9016,
+      "RMSE": 5.8955,
+      "MSE": 34.7566,
+      "MAE": 5.332,
+      "MAPE_pct": 9.2938,
+      "Pearson_r": 0.9599,
+      "lower_is_better": false,
+      "gpt4_reference": 87.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 28.9,
+          "predicted_fit": 30.477,
+          "residual": -1.577,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -58.1,
+          "abs_error_from_gpt4": 58.1
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 37.2,
+          "predicted_fit": 44.356,
+          "residual": -7.156,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -49.8,
+          "abs_error_from_gpt4": 49.8
+        },
+        "Qwen2.5-3B": {
+          "actual": 55.5,
+          "predicted_fit": 53.113,
+          "residual": 2.387,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -31.5,
+          "abs_error_from_gpt4": 31.5
+        },
+        "Qwen2.5-7B": {
+          "actual": 72.0,
+          "predicted_fit": 63.817,
+          "residual": 8.183,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -15.0,
+          "abs_error_from_gpt4": 15.0
+        },
+        "Qwen2.5-14B": {
+          "actual": 78.0,
+          "predicted_fit": 72.574,
+          "residual": 5.426,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -9.0,
+          "abs_error_from_gpt4": 9.0
+        },
+        "Qwen2.5-72B": {
+          "actual": 86.0,
+          "predicted_fit": 93.262,
+          "residual": -7.262,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -1.0,
+          "abs_error_from_gpt4": 1.0
+        }
+      }
+    },
+    "functional_correctness": {
+      "formula": "score = 12.519*ln(params_B) + 42.786",
+      "R2": 0.9187,
+      "Adjusted_R2": 0.8984,
+      "RMSE": 5.9475,
+      "MSE": 35.3723,
+      "MAE": 5.531,
+      "MAPE_pct": 9.0618,
+      "Pearson_r": 0.9585,
+      "lower_is_better": false,
+      "gpt4_reference": 82.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 31.4,
+          "predicted_fit": 34.108,
+          "residual": -2.708,
+          "gpt4_ref": 82.0,
+          "gap_from_gpt4": -50.6,
+          "abs_error_from_gpt4": 50.6
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 41.8,
+          "predicted_fit": 47.861,
+          "residual": -6.061,
+          "gpt4_ref": 82.0,
+          "gap_from_gpt4": -40.2,
+          "abs_error_from_gpt4": 40.2
+        },
+        "Qwen2.5-3B": {
+          "actual": 59.2,
+          "predicted_fit": 56.539,
+          "residual": 2.661,
+          "gpt4_ref": 82.0,
+          "gap_from_gpt4": -22.8,
+          "abs_error_from_gpt4": 22.8
+        },
+        "Qwen2.5-7B": {
+          "actual": 75.3,
+          "predicted_fit": 67.146,
+          "residual": 8.154,
+          "gpt4_ref": 82.0,
+          "gap_from_gpt4": -6.7,
+          "abs_error_from_gpt4": 6.7
+        },
+        "Qwen2.5-14B": {
+          "actual": 81.6,
+          "predicted_fit": 75.823,
+          "residual": 5.777,
+          "gpt4_ref": 82.0,
+          "gap_from_gpt4": -0.4,
+          "abs_error_from_gpt4": 0.4
+        },
+        "Qwen2.5-72B": {
+          "actual": 88.5,
+          "predicted_fit": 96.323,
+          "residual": -7.823,
+          "gpt4_ref": 82.0,
+          "gap_from_gpt4": 6.5,
+          "abs_error_from_gpt4": 6.5
+        }
+      }
+    },
+    "execution_success_rate": {
+      "formula": "score = 9.109*ln(params_B) + 60.948",
+      "R2": 0.922,
+      "Adjusted_R2": 0.9025,
+      "RMSE": 4.2315,
+      "MSE": 17.9052,
+      "MAE": 3.8939,
+      "MAPE_pct": 5.0527,
+      "Pearson_r": 0.9602,
+      "lower_is_better": false,
+      "gpt4_reference": 95.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 52.1,
+          "predicted_fit": 54.634,
+          "residual": -2.534,
+          "gpt4_ref": 95.0,
+          "gap_from_gpt4": -42.9,
+          "abs_error_from_gpt4": 42.9
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 61.3,
+          "predicted_fit": 64.642,
+          "residual": -3.342,
+          "gpt4_ref": 95.0,
+          "gap_from_gpt4": -33.7,
+          "abs_error_from_gpt4": 33.7
+        },
+        "Qwen2.5-3B": {
+          "actual": 72.4,
+          "predicted_fit": 70.956,
+          "residual": 1.444,
+          "gpt4_ref": 95.0,
+          "gap_from_gpt4": -22.6,
+          "abs_error_from_gpt4": 22.6
+        },
+        "Qwen2.5-7B": {
+          "actual": 84.7,
+          "predicted_fit": 78.674,
+          "residual": 6.026,
+          "gpt4_ref": 95.0,
+          "gap_from_gpt4": -10.3,
+          "abs_error_from_gpt4": 10.3
+        },
+        "Qwen2.5-14B": {
+          "actual": 89.2,
+          "predicted_fit": 84.988,
+          "residual": 4.212,
+          "gpt4_ref": 95.0,
+          "gap_from_gpt4": -5.8,
+          "abs_error_from_gpt4": 5.8
+        },
+        "Qwen2.5-72B": {
+          "actual": 94.1,
+          "predicted_fit": 99.906,
+          "residual": -5.806,
+          "gpt4_ref": 95.0,
+          "gap_from_gpt4": -0.9,
+          "abs_error_from_gpt4": 0.9
+        }
+      }
+    },
+    "answer_accuracy": {
+      "formula": "score = 8.119*ln(params_B) + 55.562",
+      "R2": 0.9448,
+      "Adjusted_R2": 0.931,
+      "RMSE": 3.1336,
+      "MSE": 9.8197,
+      "MAE": 2.9057,
+      "MAPE_pct": 4.5237,
+      "Pearson_r": 0.972,
+      "lower_is_better": false,
+      "gpt4_reference": 87.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 45.4,
+          "predicted_fit": 49.935,
+          "residual": -4.535,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -41.6,
+          "abs_error_from_gpt4": 41.6
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 60.9,
+          "predicted_fit": 58.854,
+          "residual": 2.046,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -26.1,
+          "abs_error_from_gpt4": 26.1
+        },
+        "Qwen2.5-3B": {
+          "actual": 65.6,
+          "predicted_fit": 64.481,
+          "residual": 1.119,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -21.4,
+          "abs_error_from_gpt4": 21.4
+        },
+        "Qwen2.5-7B": {
+          "actual": 74.2,
+          "predicted_fit": 71.36,
+          "residual": 2.84,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -12.8,
+          "abs_error_from_gpt4": 12.8
+        },
+        "Qwen2.5-14B": {
+          "actual": 79.7,
+          "predicted_fit": 76.987,
+          "residual": 2.713,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -7.3,
+          "abs_error_from_gpt4": 7.3
+        },
+        "Qwen2.5-72B": {
+          "actual": 86.1,
+          "predicted_fit": 90.282,
+          "residual": -4.182,
+          "gpt4_ref": 87.0,
+          "gap_from_gpt4": -0.9,
+          "abs_error_from_gpt4": 0.9
+        }
+      }
+    },
+    "exact_match": {
+      "formula": "score = 8.461*ln(params_B) + 39.260",
+      "R2": 0.9749,
+      "Adjusted_R2": 0.9686,
+      "RMSE": 2.1675,
+      "MSE": 4.6979,
+      "MAE": 1.7801,
+      "MAPE_pct": 3.372,
+      "Pearson_r": 0.9874,
+      "lower_is_better": false,
+      "gpt4_reference": 59.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 31.2,
+          "predicted_fit": 33.396,
+          "residual": -2.196,
+          "gpt4_ref": 59.0,
+          "gap_from_gpt4": -27.8,
+          "abs_error_from_gpt4": 27.8
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 42.8,
+          "predicted_fit": 42.691,
+          "residual": 0.109,
+          "gpt4_ref": 59.0,
+          "gap_from_gpt4": -16.2,
+          "abs_error_from_gpt4": 16.2
+        },
+        "Qwen2.5-3B": {
+          "actual": 48.6,
+          "predicted_fit": 48.556,
+          "residual": 0.044,
+          "gpt4_ref": 59.0,
+          "gap_from_gpt4": -10.4,
+          "abs_error_from_gpt4": 10.4
+        },
+        "Qwen2.5-7B": {
+          "actual": 58.4,
+          "predicted_fit": 55.724,
+          "residual": 2.676,
+          "gpt4_ref": 59.0,
+          "gap_from_gpt4": -0.6,
+          "abs_error_from_gpt4": 0.6
+        },
+        "Qwen2.5-14B": {
+          "actual": 64.1,
+          "predicted_fit": 61.589,
+          "residual": 2.511,
+          "gpt4_ref": 59.0,
+          "gap_from_gpt4": 5.1,
+          "abs_error_from_gpt4": 5.1
+        },
+        "Qwen2.5-72B": {
+          "actual": 72.3,
+          "predicted_fit": 75.445,
+          "residual": -3.145,
+          "gpt4_ref": 59.0,
+          "gap_from_gpt4": 13.3,
+          "abs_error_from_gpt4": 13.3
+        }
+      }
+    },
+    "semantic_similarity": {
+      "formula": "score = 4.771*ln(params_B) + 72.075",
+      "R2": 0.9817,
+      "Adjusted_R2": 0.9772,
+      "RMSE": 1.0391,
+      "MSE": 1.0797,
+      "MAE": 0.8915,
+      "MAPE_pct": 1.0756,
+      "Pearson_r": 0.9908,
+      "lower_is_better": false,
+      "gpt4_reference": 89.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 68.2,
+          "predicted_fit": 68.768,
+          "residual": -0.568,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": -20.8,
+          "abs_error_from_gpt4": 20.8
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 73.6,
+          "predicted_fit": 74.01,
+          "residual": -0.41,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": -15.4,
+          "abs_error_from_gpt4": 15.4
+        },
+        "Qwen2.5-3B": {
+          "actual": 77.1,
+          "predicted_fit": 77.317,
+          "residual": -0.217,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": -11.9,
+          "abs_error_from_gpt4": 11.9
+        },
+        "Qwen2.5-7B": {
+          "actual": 82.4,
+          "predicted_fit": 81.359,
+          "residual": 1.041,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": -6.6,
+          "abs_error_from_gpt4": 6.6
+        },
+        "Qwen2.5-14B": {
+          "actual": 86.3,
+          "predicted_fit": 84.666,
+          "residual": 1.634,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": -2.7,
+          "abs_error_from_gpt4": 2.7
+        },
+        "Qwen2.5-72B": {
+          "actual": 91.0,
+          "predicted_fit": 92.479,
+          "residual": -1.479,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": 2.0,
+          "abs_error_from_gpt4": 2.0
+        }
+      }
+    },
+    "hallucination_rate": {
+      "formula": "score = -4.366*ln(params_B) + 23.705",
+      "R2": 0.9501,
+      "Adjusted_R2": 0.9377,
+      "RMSE": 1.5972,
+      "MSE": 2.5509,
+      "MAE": 1.4002,
+      "MAPE_pct": 12.2011,
+      "Pearson_r": -0.9747,
+      "lower_is_better": true,
+      "gpt4_reference": 9.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 28.4,
+          "predicted_fit": 26.731,
+          "residual": 1.669,
+          "gpt4_ref": 9.0,
+          "gap_from_gpt4": -19.4,
+          "abs_error_from_gpt4": 19.4
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 22.1,
+          "predicted_fit": 21.935,
+          "residual": 0.165,
+          "gpt4_ref": 9.0,
+          "gap_from_gpt4": -13.1,
+          "abs_error_from_gpt4": 13.1
+        },
+        "Qwen2.5-3B": {
+          "actual": 18.3,
+          "predicted_fit": 18.909,
+          "residual": -0.609,
+          "gpt4_ref": 9.0,
+          "gap_from_gpt4": -9.3,
+          "abs_error_from_gpt4": 9.3
+        },
+        "Qwen2.5-7B": {
+          "actual": 13.6,
+          "predicted_fit": 15.209,
+          "residual": -1.609,
+          "gpt4_ref": 9.0,
+          "gap_from_gpt4": -4.6,
+          "abs_error_from_gpt4": 4.6
+        },
+        "Qwen2.5-14B": {
+          "actual": 10.2,
+          "predicted_fit": 12.183,
+          "residual": -1.983,
+          "gpt4_ref": 9.0,
+          "gap_from_gpt4": -1.2,
+          "abs_error_from_gpt4": 1.2
+        },
+        "Qwen2.5-72B": {
+          "actual": 7.4,
+          "predicted_fit": 5.033,
+          "residual": 2.367,
+          "gpt4_ref": 9.0,
+          "gap_from_gpt4": 1.6,
+          "abs_error_from_gpt4": 1.6
+        }
+      }
+    },
+    "robustness": {
+      "formula": "score = 7.290*ln(params_B) + 55.098",
+      "R2": 0.9744,
+      "Adjusted_R2": 0.9681,
+      "RMSE": 1.8852,
+      "MSE": 3.554,
+      "MAE": 1.5577,
+      "MAPE_pct": 2.2533,
+      "Pearson_r": 0.9871,
+      "lower_is_better": false,
+      "gpt4_reference": 86.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 48.3,
+          "predicted_fit": 50.044,
+          "residual": -1.744,
+          "gpt4_ref": 86.0,
+          "gap_from_gpt4": -37.7,
+          "abs_error_from_gpt4": 37.7
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 57.9,
+          "predicted_fit": 58.053,
+          "residual": -0.153,
+          "gpt4_ref": 86.0,
+          "gap_from_gpt4": -28.1,
+          "abs_error_from_gpt4": 28.1
+        },
+        "Qwen2.5-3B": {
+          "actual": 63.2,
+          "predicted_fit": 63.107,
+          "residual": 0.093,
+          "gpt4_ref": 86.0,
+          "gap_from_gpt4": -22.8,
+          "abs_error_from_gpt4": 22.8
+        },
+        "Qwen2.5-7B": {
+          "actual": 71.4,
+          "predicted_fit": 69.284,
+          "residual": 2.116,
+          "gpt4_ref": 86.0,
+          "gap_from_gpt4": -14.6,
+          "abs_error_from_gpt4": 14.6
+        },
+        "Qwen2.5-14B": {
+          "actual": 76.8,
+          "predicted_fit": 74.337,
+          "residual": 2.463,
+          "gpt4_ref": 86.0,
+          "gap_from_gpt4": -9.2,
+          "abs_error_from_gpt4": 9.2
+        },
+        "Qwen2.5-72B": {
+          "actual": 83.5,
+          "predicted_fit": 86.275,
+          "residual": -2.775,
+          "gpt4_ref": 86.0,
+          "gap_from_gpt4": -2.5,
+          "abs_error_from_gpt4": 2.5
+        }
+      }
+    },
+    "response_time_sec": {
+      "formula": "score = 18.957*ln(params_B) + -4.916",
+      "R2": 0.7715,
+      "Adjusted_R2": 0.7144,
+      "RMSE": 16.4731,
+      "MSE": 271.3622,
+      "MAE": 14.6292,
+      "MAPE_pct": 289.9248,
+      "Pearson_r": 0.8784,
+      "lower_is_better": true,
+      "gpt4_reference": 5.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 1.43,
+          "predicted_fit": -18.056,
+          "residual": 19.486,
+          "gpt4_ref": 5.0,
+          "gap_from_gpt4": 3.57,
+          "abs_error_from_gpt4": 3.57
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 3.33,
+          "predicted_fit": 2.77,
+          "residual": 0.56,
+          "gpt4_ref": 5.0,
+          "gap_from_gpt4": 1.67,
+          "abs_error_from_gpt4": 1.67
+        },
+        "Qwen2.5-3B": {
+          "actual": 6.25,
+          "predicted_fit": 15.911,
+          "residual": -9.661,
+          "gpt4_ref": 5.0,
+          "gap_from_gpt4": -1.25,
+          "abs_error_from_gpt4": 1.25
+        },
+        "Qwen2.5-7B": {
+          "actual": 14.29,
+          "predicted_fit": 31.973,
+          "residual": -17.683,
+          "gpt4_ref": 5.0,
+          "gap_from_gpt4": -9.29,
+          "abs_error_from_gpt4": 9.29
+        },
+        "Qwen2.5-14B": {
+          "actual": 28.57,
+          "predicted_fit": 45.114,
+          "residual": -16.544,
+          "gpt4_ref": 5.0,
+          "gap_from_gpt4": -23.57,
+          "abs_error_from_gpt4": 23.57
+        },
+        "Qwen2.5-72B": {
+          "actual": 100.0,
+          "predicted_fit": 76.158,
+          "residual": 23.842,
+          "gpt4_ref": 5.0,
+          "gap_from_gpt4": -95.0,
+          "abs_error_from_gpt4": 95.0
+        }
+      }
+    },
+    "consistency": {
+      "formula": "score = 5.647*ln(params_B) + 67.247",
+      "R2": 0.9487,
+      "Adjusted_R2": 0.9358,
+      "RMSE": 2.0972,
+      "MSE": 4.3983,
+      "MAE": 1.8885,
+      "MAPE_pct": 2.4225,
+      "Pearson_r": 0.974,
+      "lower_is_better": false,
+      "gpt4_reference": 92.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 61.4,
+          "predicted_fit": 63.333,
+          "residual": -1.933,
+          "gpt4_ref": 92.0,
+          "gap_from_gpt4": -30.6,
+          "abs_error_from_gpt4": 30.6
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 68.9,
+          "predicted_fit": 69.537,
+          "residual": -0.637,
+          "gpt4_ref": 92.0,
+          "gap_from_gpt4": -23.1,
+          "abs_error_from_gpt4": 23.1
+        },
+        "Qwen2.5-3B": {
+          "actual": 74.2,
+          "predicted_fit": 73.451,
+          "residual": 0.749,
+          "gpt4_ref": 92.0,
+          "gap_from_gpt4": -17.8,
+          "abs_error_from_gpt4": 17.8
+        },
+        "Qwen2.5-7B": {
+          "actual": 80.6,
+          "predicted_fit": 78.235,
+          "residual": 2.365,
+          "gpt4_ref": 92.0,
+          "gap_from_gpt4": -11.4,
+          "abs_error_from_gpt4": 11.4
+        },
+        "Qwen2.5-14B": {
+          "actual": 84.7,
+          "predicted_fit": 82.149,
+          "residual": 2.551,
+          "gpt4_ref": 92.0,
+          "gap_from_gpt4": -7.3,
+          "abs_error_from_gpt4": 7.3
+        },
+        "Qwen2.5-72B": {
+          "actual": 88.3,
+          "predicted_fit": 91.396,
+          "residual": -3.096,
+          "gpt4_ref": 92.0,
+          "gap_from_gpt4": -3.7,
+          "abs_error_from_gpt4": 3.7
+        }
+      }
+    },
+    "scalability": {
+      "formula": "score = 8.029*ln(params_B) + 57.423",
+      "R2": 0.9239,
+      "Adjusted_R2": 0.9048,
+      "RMSE": 3.6804,
+      "MSE": 13.5454,
+      "MAE": 3.2802,
+      "MAPE_pct": 4.4025,
+      "Pearson_r": 0.9612,
+      "lower_is_better": false,
+      "gpt4_reference": 89.0,
+      "per_model": {
+        "Qwen2.5-0.5B": {
+          "actual": 51.2,
+          "predicted_fit": 51.857,
+          "residual": -0.657,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": -37.8,
+          "abs_error_from_gpt4": 37.8
+        },
+        "Qwen2.5-1.5B": {
+          "actual": 58.4,
+          "predicted_fit": 60.678,
+          "residual": -2.278,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": -30.6,
+          "abs_error_from_gpt4": 30.6
+        },
+        "Qwen2.5-3B": {
+          "actual": 63.7,
+          "predicted_fit": 66.244,
+          "residual": -2.544,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": -25.3,
+          "abs_error_from_gpt4": 25.3
+        },
+        "Qwen2.5-7B": {
+          "actual": 78.9,
+          "predicted_fit": 73.047,
+          "residual": 5.853,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": -10.1,
+          "abs_error_from_gpt4": 10.1
+        },
+        "Qwen2.5-14B": {
+          "actual": 82.6,
+          "predicted_fit": 78.612,
+          "residual": 3.988,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": -6.4,
+          "abs_error_from_gpt4": 6.4
+        },
+        "Qwen2.5-72B": {
+          "actual": 87.4,
+          "predicted_fit": 91.761,
+          "residual": -4.361,
+          "gpt4_ref": 89.0,
+          "gap_from_gpt4": -1.6,
+          "abs_error_from_gpt4": 1.6
+        }
+      }
+    }
+  },
+  "part_c_per_model_vs_gpt4": {
+    "Qwen2.5-0.5B": {
+      "params_B": 0.5,
+      "RMSE_vs_GPT4": 36.8658,
+      "MSE_vs_GPT4": 1359.0878,
+      "MAE_vs_GPT4": 34.0446,
+      "MAPE_vs_GPT4_pct": 39.8707,
+      "composite_score": 53.38,
+      "gpt4_composite": 86.84,
+      "gap_from_gpt4": -33.46
+    },
+    "Qwen2.5-1.5B": {
+      "params_B": 1.5,
+      "RMSE_vs_GPT4": 28.2402,
+      "MSE_vs_GPT4": 797.5095,
+      "MAE_vs_GPT4": 25.4045,
+      "MAPE_vs_GPT4_pct": 29.5575,
+      "composite_score": 61.71,
+      "gpt4_composite": 86.84,
+      "gap_from_gpt4": -25.13
+    },
+    "Qwen2.5-3B": {
+      "params_B": 3.0,
+      "RMSE_vs_GPT4": 19.6667,
+      "MSE_vs_GPT4": 386.7776,
+      "MAE_vs_GPT4": 17.9698,
+      "MAPE_vs_GPT4_pct": 20.8227,
+      "composite_score": 68.87,
+      "gpt4_composite": 86.84,
+      "gap_from_gpt4": -17.97
+    },
+    "Qwen2.5-7B": {
+      "params_B": 7.0,
+      "RMSE_vs_GPT4": 10.1767,
+      "MSE_vs_GPT4": 103.5661,
+      "MAE_vs_GPT4": 9.3582,
+      "MAPE_vs_GPT4_pct": 10.5336,
+      "composite_score": 77.48,
+      "gpt4_composite": 86.84,
+      "gap_from_gpt4": -9.36
+    },
+    "Qwen2.5-14B": {
+      "params_B": 14.0,
+      "RMSE_vs_GPT4": 8.9441,
+      "MSE_vs_GPT4": 79.9965,
+      "MAE_vs_GPT4": 6.9614,
+      "MAPE_vs_GPT4_pct": 7.9288,
+      "composite_score": 80.73,
+      "gpt4_composite": 86.84,
+      "gap_from_gpt4": -6.11
+    },
+    "Qwen2.5-72B": {
+      "params_B": 72.0,
+      "RMSE_vs_GPT4": 27.5348,
+      "MSE_vs_GPT4": 758.1668,
+      "MAE_vs_GPT4": 10.68,
+      "MAPE_vs_GPT4_pct": 12.1168,
+      "composite_score": 80.07,
+      "gpt4_composite": 86.84,
+      "gap_from_gpt4": -6.76
+    }
+  }
+}
